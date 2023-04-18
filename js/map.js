@@ -11,7 +11,7 @@ var stations = new Map();
 var max_count = Number.MIN_VALUE;
 var min_score = Number.MAX_VALUE;
 var max_score = Number.MIN_VALUE;
-
+var score_scale_max;
 var coordinates = d3.pointer(this);
 var x = coordinates[0];
 var y = coordinates[1];
@@ -121,26 +121,35 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
             
         });
         stations.forEach(entry => {
-            if(Math.abs(entry[ECOUNT] - entry[SCOUNT]) > max_score)
+            if((entry[ECOUNT] - entry[SCOUNT]) > max_score)
             {
                 max_score = (entry[ECOUNT] - entry[SCOUNT]);
+            }
+            if((entry[ECOUNT] - entry[SCOUNT]) < min_score)
+            {
+                min_score = (entry[ECOUNT] - entry[SCOUNT]);
             }
             if((entry[ECOUNT] + entry[SCOUNT]) > max_count)
             {
                 max_count = (entry[ECOUNT] + entry[SCOUNT])
             }
         });
-        console.log(max_score);
+        score_scale_max = max_score;
+        if(Math.abs(max_score) > Math.abs(min_score))
+        {
+            score_scale_max = Math.abs(min_score);
+        }
+        console.log(min_score, max_score);
         var min_circle_r = 1;
         var max_circle_r = 3;
         let count2radius = d3.scaleSqrt()
             .domain([0, max_count])
             .range([min_circle_r, max_circle_r]);
         let score2redcolor = d3.scaleLinear()
-            .domain([0, max_score])
+            .domain([0, score_scale_max])
             .range(["#f0eded","red"]);
         let score2bluecolor = d3.scaleLinear()
-            .domain([0, max_score])
+            .domain([0, Math.abs(score_scale_max)])
             .range(["#f0eded","blue"]);
         d3.select("body").select("#map").select("svg")
             .selectAll("circle")
@@ -161,9 +170,9 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
                 score = d[VALUE][ECOUNT] - d[VALUE][SCOUNT];
                 if(score >= 0)
                 {
-                    return score2redcolor(score);
+                    return score2redcolor(clamp(score, 0, score_scale_max));
                 }
-                return score2bluecolor(Math.abs(score));
+                return score2bluecolor(Math.abs(clamp(Math.abs(score), 0, Math.abs(score_scale_max))));
             })
             .attr('fill-opacity', 0.75)
             .attr('stroke', "none")
