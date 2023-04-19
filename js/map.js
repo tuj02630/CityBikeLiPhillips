@@ -7,7 +7,7 @@ const KEY = 0, VALUE = 1;
 var nsstreckung = 130.0
 
 var stations = new Map();
-
+var greybuffer = 5;
 var max_count = Number.MIN_VALUE;
 var min_score = Number.MAX_VALUE;
 var max_score = Number.MIN_VALUE;
@@ -55,18 +55,41 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
         ym.innerHTML = ypix2coords(clamp(coords[1], 0, svgh)).toString();
         //console.log(xpix2coords(clamp(coords[0], 0, svgw)), ypix2coords(clamp(coords[1], 0, svgh))); // log the mouse x,y position
     })
+    console.time("totalTime:");
     Promise.all(
         [
+            //NYC
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.000.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.001.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.002.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.003.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.004.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.005.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.006.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.007.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.008.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.009.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.010.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.011.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.012.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.013.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.014.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.015.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.016.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.017.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.018.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.019.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.020.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.021.csv'),
+            /*
+            d3.csv('res/202302-citibike-tripdata.csv'),
+            d3.csv('res/202301-citibike-tripdata.csv'),
+            d3.csv('res/202212-citibike-tripdata.csv'),
+            d3.csv('res/202211-citibike-tripdata.csv'),
+            d3.csv('res/202210-citibike-tripdata.csv'),
+            */
+            //JERSEY CITY
             d3.csv('res/JC-202303-citibike-tripdata.csv'),
-            d3.csv('res/JC-202302-citibike-tripdata.csv'),
-            d3.csv('res/JC-202301-citibike-tripdata.csv'),
-            d3.csv('res/JC-202212-citibike-tripdata.csv'),
-            d3.csv('res/JC-202211-citibike-tripdata.csv'),
-            d3.csv('res/JC-202210-citibike-tripdata.csv'),
-            d3.csv('res/JC-202209-citibike-tripdata.csv'),
-            d3.csv('res/JC-202208-citibike-tripdata.csv'),
-            d3.csv('res/JC-202207-citibike-tripdata.csv'),
-            d3.csv('res/JC-202206-citibike-tripdata.csv')
         ]
     ).then((data) => {
         data.forEach(element => {
@@ -121,13 +144,13 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
             
         });
         stations.forEach(entry => {
-            if((entry[ECOUNT] - entry[SCOUNT]) > max_score)
+            if((entry[ECOUNT] - entry[SCOUNT])  > max_score)
             {
-                max_score = (entry[ECOUNT] - entry[SCOUNT]);
+                max_score = (entry[ECOUNT] - entry[SCOUNT]) ;
             }
-            if((entry[ECOUNT] - entry[SCOUNT]) < min_score)
+            if((entry[ECOUNT] - entry[SCOUNT])  < min_score)
             {
-                min_score = (entry[ECOUNT] - entry[SCOUNT]);
+                min_score = (entry[ECOUNT] - entry[SCOUNT]) ;
             }
             if((entry[ECOUNT] + entry[SCOUNT]) > max_count)
             {
@@ -139,17 +162,18 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
         {
             score_scale_max = Math.abs(min_score);
         }
-        console.log(min_score, max_score);
-        var min_circle_r = 1;
-        var max_circle_r = 3;
+        score_scale_max /= 4;
+        console.log(min_score, max_score, score_scale_max);
+        var min_circle_r = 0.5;
+        var max_circle_r = 2.5;
         let count2radius = d3.scaleSqrt()
             .domain([0, max_count])
             .range([min_circle_r, max_circle_r]);
         let score2redcolor = d3.scaleLinear()
-            .domain([0, score_scale_max])
+            .domain([(-1 * score_scale_max / 2), score_scale_max])
             .range(["#f0eded","red"]);
         let score2bluecolor = d3.scaleLinear()
-            .domain([0, Math.abs(score_scale_max)])
+            .domain([(-1 * score_scale_max / 2), Math.abs(score_scale_max)])
             .range(["#f0eded","blue"]);
         d3.select("body").select("#map").select("svg")
             .selectAll("circle")
@@ -167,33 +191,40 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
                 return count2radius((d[VALUE][ECOUNT] + d[VALUE][SCOUNT]));
             })
             .attr("fill", function(d){
-                score = d[VALUE][ECOUNT] - d[VALUE][SCOUNT];
-                if(score >= 0)
+                score = (d[VALUE][ECOUNT] - d[VALUE][SCOUNT]);
+                if(score > score_scale_max / 50)
                 {
                     return score2redcolor(clamp(score, 0, score_scale_max));
                 }
-                return score2bluecolor(Math.abs(clamp(Math.abs(score), 0, Math.abs(score_scale_max))));
+                else if (score < -1 * score_scale_max / 50)
+                {
+                    return score2bluecolor(Math.abs(clamp(Math.abs(score), 0, score_scale_max)));
+                }
+                else{
+                    return "#f0eded";
+                }
             })
             .attr('fill-opacity', 0.75)
-            .attr('stroke', "none")
+            .attr('stroke', "#f0eded")
+            .attr('stroke-width', '0.25')
             .on("mouseover", function(d, i){
                 //console.log(i[KEY]);
                 stationname.innerHTML = i[KEY];
                 stationdetails.innerHTML = "Number of trips to: " + i[VALUE][ECOUNT];
                 stationdetails.innerHTML += "</br>Number of trips from: " + i[VALUE][SCOUNT];
+                stationdetails.innerHTML += "</br>Score value: " + ((i[VALUE][ECOUNT] - i[VALUE][SCOUNT]));
                 d3.select(this)
                     .style("stroke", "black")
+                    .attr('fill-opacity', 1)
+                    .attr('stroke-width', '0.5')
             })
             .on("mouseout", function(){
                 d3.select(this)
-                    .style("stroke", "none")
+                    .style("stroke", "#f0eded")
+                    .attr('stroke-width', '0.25')
+                    .attr('fill-opacity', 0.75)
             })
             
     })
     
 })
-
-    
-
-
-  
