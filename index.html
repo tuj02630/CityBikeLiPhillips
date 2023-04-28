@@ -1,14 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"> 
     <head>
+        <meta charset="UTF-8">
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="js/map.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.css" integrity="sha512-DbP1b6q56Ud5q0L+lvw9COyyH/+pN1lVmySvun4UsH8vmfdIHou+PAHfMnGXf6Fvd9rYLjSojeuPhQz2euU1cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            .tooltip {
+                position: absolute;
+                text-align: center;
+                background: #f9f9f9;
+                border: 1px solid #cfcfcf;
+                border-radius: 4px;
+                padding: 4px;
+                font-size: 12px;
+                pointer-events: none;
+            }
+        </style>
     </head>
     <body>
-        <div id="map"></div>
-        <div id="stationname"></div>
-        <div id="stationdetails"></div>
-        <div id="xm">0</div>
-        <div id="ym">0</div>
+        <div id="fullPage">
+            <div id="firstPage" class="section s1">
+                <hi>the first page</hi>
+            </div>
+            <div id="secondPage" class="section s2">
+                <hi>the Second page</hi>
+            </div>
+            <div id="thirdPage" class="section s3">
+                <hi>the Third page</hi>
+                <div id="map"></div>
+                <div id="stationname"></div>
+                <div id="stationdetails"></div>
+                <div id="xm">0</div>
+                <div id="ym">0</div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.js" integrity="sha512-GS3CSFQ4aj+0fL2a0wV1ouvpdbTZ3eEUriXTpXt50dc0CkO1fgyWuLoPA5NWy1PAWmcaZNneM+OAThgCqPnX+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+            new fullpage('#fullPage', {
+                licenseKey: 'gplv3-license',
+                anchors: ['page1', 'page2', 'page3'],
+                sectionsColor: ['pink', 'white', '#C0C0C0'],
+                autoScrolling:true,
+                lazyLoading: true,
+                navigation:true,
+                
+            });
+        </script>
+
     </body>
+        <script src="JS/linegraph.js"></script>
 </html>
