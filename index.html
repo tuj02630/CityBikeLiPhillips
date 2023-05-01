@@ -5,6 +5,8 @@
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="js/map.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.css" integrity="sha512-DbP1b6q56Ud5q0L+lvw9COyyH/+pN1lVmySvun4UsH8vmfdIHou+PAHfMnGXf6Fvd9rYLjSojeuPhQz2euU1cw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./css/bike.css"/>
+        <link rel="stylesheet" href="./css/styles.css"/>
         <style>
             .tooltip {
                 position: absolute;
@@ -22,6 +24,39 @@
         <div id="fullPage">
             <div id="firstPage" class="section s1">
                 <hi>the first page</hi>
+                <div class="bike-riding">
+                    <div class="clouds"></div>
+                    <div class="shadow"></div>
+                  <div class="cyclist">
+                    <div class="bike">
+                      <div class="leftTyre">
+                        <div class="spokes"></div>
+                      </div>
+                      <div class="rightTyre">
+                        <div class="spokes"></div>
+                      </div>
+                      <div class="wheel"></div>
+                      <div class="pedals"></div>
+                      <div class="chain"></div>
+                    </div>
+                    <div class="girl">
+                      <div class="top"></div>
+                      <div class="rightArm"></div>
+                      <div class="leftArm"></div>
+                      <div class="head"></div>
+                      <div class="hair"></div>
+                      <div class="strap"></div>
+                    <div class="trousers">
+                        <div class="leftLeg">
+                          <div class="leftcalf"></div>
+                        </div>
+                        <div class="rightLeg">
+                          <div class="calf"></div>
+                        </div>
+                      </div>
+                      </div> 
+                  </div>
+                </div>
             </div>
             <div id="secondPage" class="section s2">
                 <hi>the Second page</hi>
@@ -41,9 +76,9 @@
             new fullpage('#fullPage', {
                 licenseKey: 'gplv3-license',
                 anchors: ['page1', 'page2', 'page3'],
-                sectionsColor: ['pink', 'white', '#C0C0C0'],
+                sectionsColor: ['#94d2bd', 'white', '#C0C0C0'],
                 autoScrolling:true,
-                lazyLoading: true,
+                lazyLoading:true,
                 navigation:true,
                 
             });
