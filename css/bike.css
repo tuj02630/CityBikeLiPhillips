@@ -70,8 +70,8 @@
   .leftTyre:before, .rightTyre:before {
     content:"";
     position: absolute;
-    width:135px;
-    height:135px;
+    width:150px;
+    height:150px;
     border-radius:50%;
     border: 8px solid #fcfffc;
   }
@@ -211,8 +211,8 @@
   
   .top {
     position: absolute;
-    width:80px;
-    height: 80px;
+    width:115px;
+    height: 110px;
     border-top: 50px solid #e9d8a6;
     border-left: 50px solid #e9d8a6;
     border-top-left-radius:100%;
@@ -382,7 +382,7 @@
   }
   .trousers {
     position: absolute;
-    top:-90px;
+    top:-105px;
     left:-20px;
     z-index:1;
   }
