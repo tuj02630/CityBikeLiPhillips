@@ -35,26 +35,14 @@
 
 .d-flex{
     font-size:20px;
-    background-color: rgba(220, 220, 220, 0.14);
+    background-color: rgba(111, 146, 209, 0.788);
     padding:20px 10px 20px 20px;
     border-radius: 20px;
 }
 
 
-.tooltip {
-    position: absolute;
-    text-align: center;
-    font: 12px sans-serif;
-    background-color:var(--main-background);
-    color: var(--main8);
-    color: var(--main8)
-}
 
-.tooltip h3, h4, h5 {
-    text-align: left;
-    fill: var(--main8);
-    color: var(--main8);
-}
+
 
 .connection {
     stroke: black;
@@ -109,10 +97,16 @@ select {
 
 .expText{
     vertical-align: middle;
-    font-size: 35px;
+    font-size: 25px;
     font-weight: bold;
+    color:black;
     
 }
+.expText-black {
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+  }
 
 .author{
     text-align: center;
