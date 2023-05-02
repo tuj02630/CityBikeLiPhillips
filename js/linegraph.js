@@ -38,8 +38,8 @@
 
     // get the data
     Promise.all([
-        d3.csv("./output/test/trips_per_day_2013_12.csv"), 
-        d3.csv("./output/test/rebalance_per_day_2013_12.csv") 
+        d3.csv("./output/trips_per_day_2013_12.csv"), 
+        d3.csv("./output/rebalance_per_day_2013_12.csv") 
     ]).then((data) => {
         const trips = data[0];
         const rebalance = data[1];

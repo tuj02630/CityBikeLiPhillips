@@ -80,22 +80,21 @@
         </div>
 
         <div id="thirdPage" class="section s3">
-          <div class='container'>
+          <div class='container' style="margin-left: 20px; margin-right: 20px;">
             <div class="row">
               <text style="font-size: 40px; margin-top: 30px;">
                 The Dilemma of Citi Bike
               </text>
-              <div class="col-6">
+              <div class="col-5">
                 <div class="row">
-                  <text style="font-size: 25px; margin-top: 10px;">As many users only ride bikes in one direction, like downhill rather than uphill, there is a net movement of Citi Bikes towards common destination areas.  </text>
-                  <img id="pic1" src="/images/tw1.JPG" alt="Picture 1" style="max-height: 50%; max-width: 70%; margin-bottom: 1vh;" onclick="togglePicture()">
-                  <img id="pic2" src="/images/tw2.JPG" alt="Picture 2" style="max-height: 50%; max-width: 70%; display:none;" onclick="togglePicture()">
+                  <text style="font-size: 20px; margin-top: 10px; margin-bottom: 10px;">As many users only ride bikes in one direction, like downhill rather than uphill, there is a net movement of Citi Bikes towards common destination areas.  </text>
+                  <img id="pic1" src="/images/tw1.JPG" alt="Picture 1" style="max-height: 50%; max-width: 85%; margin-bottom: 1vh;" onclick="togglePicture()">
+                  <img id="pic2" src="/images/tw2.JPG" alt="Picture 2" style="max-height: 50%; max-width: 85%; display:none;" onclick="togglePicture()">
                 </div>
               </div>
-              <div class="col-6">
-                <text style="font-size: 25px; margin-top: 10px;"> This map showed each CitiBike station and its situation during a time. </text>   
+              <div class="col-7" style="margin-top: 10px;">
+                <text style="font-size: 20px;"> This map showed each CitiBike station and its situation during a time. </text>   
                 <div class="row" style="height: 10%; padding-left: 0vh; padding-bottom: 1vh; padding-right: 3vh; padding-top: 1vh">
-                  
                   <div id="map"></div>
                   <div id="stationname"></div>
                   <div id="stationdetails"></div>
@@ -110,14 +109,40 @@
 
 
         <div id="fourthPage" class="section s4">
-          <hi>the fourth page</hi>
-          <div class="container">
-            <div id="linegraph">
+          <div class='container' style="margin-left: 20px; margin-right: 20px;">
+            <div class="row">
+              <text style="font-size: 40px; margin-top: 30px;">
+                Rebalancing Bikes
+              </text>
+              <div class="col-4">
+                <div class="row">
+                  <text style="font-size: 20px; margin-top: 10px; margin-bottom: 10px;"> Rebalancing in four methods </text>
+                  <div class="row" id="pic3_4" onclick="togglePicture()">
+                    <img id="pic3" src="/images/bike_angle.jpeg" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;">
+                    <text style="font-size: 20px; margin-bottom: 20px;"> Bike Angels </text>
+                    <img id="pic4" src="/images/bike_train.jpg" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;" >
+                    <text style="font-size: 20px; margin-bottom: 10px;"> Bike Trains </text>
+                  </div>
+                  <div class="row" id="pic5_6" onclick="togglePicture()" style="display: none;">
+                    <img id="pic5" src="/images/valet.png" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;">
+                    <text style="font-size: 20px; margin-bottom: 20px;"> Valet schedule </text>
+                    <img id="pic6" src="/images/vans.jpg" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;">
+                    <text style="font-size: 20px; margin-bottom: 10px;"> Motorized Vehicles </text>
+                  </div>
+                </div>
+              </div>
+              <div class="col-7" style="margin-top: 10px;">
+                <text style="font-size: 20px;"> linegraph </text>   
+                <div class="row" style="height: 10%; padding-left: 0vh; padding-bottom: 1vh; padding-right: 3vh; padding-top: 1vh">
+                  <div id="linegraph">
+                </div>    
+              </div>
             </div>
           </div>
 
         </div>
         
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.js" integrity="sha512-GS3CSFQ4aj+0fL2a0wV1ouvpdbTZ3eEUriXTpXt50dc0CkO1fgyWuLoPA5NWy1PAWmcaZNneM+OAThgCqPnX+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -137,17 +162,26 @@
     <script>
       var pic1 = document.getElementById("pic1");
       var pic2 = document.getElementById("pic2");
-      var currentPic = pic1;
+      var pic3 = document.getElementById("pic3_4");
+      var pic5 = document.getElementById("pic5_6");
+      var currentPicS3 = pic1;
+      var currentPicS4 = pic3;
     
       function togglePicture() {
-        if (currentPic == pic1) {
+        if (currentPicS3 == pic1 || currentPicS4 == pic3) {
           pic1.style.display = "none";
           pic2.style.display = "inline-block";
-          currentPic = pic2;
+          pic3.style.display = "none";
+          pic5.style.display = "inline-block";
+          currentPicS3 = pic2;
+          currentPicS4 = pic5;
         } else {
           pic2.style.display = "none";
           pic1.style.display = "inline-block";
-          currentPic = pic1;
+          pic5.style.display = "none";
+          pic3.style.display = "inline-block";
+          currentPicS3 = pic1;
+          currentPicS4 = pic3;
         }
       }
     </script>

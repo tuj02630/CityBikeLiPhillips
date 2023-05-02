@@ -9,18 +9,3 @@ container1.addEventListener("click", function() {
 });
 
 
-var pic1 = document.getElementById("pic1");
-var pic2 = document.getElementById("pic2");
-var currentPic = pic1;
-
-function togglePicture() {
-  if (currentPic == pic1) {
-    pic1.style.display = "none";
-    pic2.style.display = "inline-block";
-    currentPic = pic2;
-  } else {
-    pic2.style.display = "none";
-    pic1.style.display = "inline-block";
-    currentPic = pic1;
-  }
-}

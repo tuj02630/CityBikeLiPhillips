@@ -2,7 +2,7 @@ import csv
 from datetime import datetime
 
 # read in the data from the CSV file
-with open('./res/test/2013-12-Citi Bike trip data.csv', newline='') as csvfile:
+with open('./res/2013-12-Citi Bike trip data.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     data = list(reader)
 
