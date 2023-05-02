@@ -6,7 +6,7 @@
       height = 500 - margin.top - margin.bottom;
 
     // parse the date / time
-    var parseTime = d3.timeParse("%Y-%m-%d");
+    var parseTime = d3.timeParse("%Y-%m");
 
     // set the ranges
     var x = d3.scaleTime().range([0, width]);
@@ -38,8 +38,8 @@
 
     // get the data
     Promise.all([
-        d3.csv("./output/trips_per_day_2013_12.csv"), 
-        d3.csv("./output/rebalance_per_day_2013_12.csv") 
+        d3.csv("./output/trips_per_month.csv"), 
+        d3.csv("./output/rebalanced_per_month.csv") 
     ]).then((data) => {
         const trips = data[0];
         const rebalance = data[1];
