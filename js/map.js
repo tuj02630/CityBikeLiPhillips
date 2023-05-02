@@ -60,7 +60,7 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
         [
             //NYC
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.000.csv'),
-            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.001.csv'),
+            /*d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.001.csv'),
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.002.csv'),
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.003.csv'),
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.004.csv'),
@@ -89,7 +89,7 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
             d3.csv('res/202210-citibike-tripdata.csv'),
             */
             //JERSEY CITY
-            d3.csv('res/JC-202303-citibike-tripdata.csv'),
+            //d3.csv('res/JC-202303-citibike-tripdata.csv'),
         ]
     ).then((data) => {
         data.forEach(element => {
