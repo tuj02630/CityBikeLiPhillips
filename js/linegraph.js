@@ -24,7 +24,7 @@
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    var svg = d3.select("#secondPage").append("svg")
+    var svg = d3.select("#linegraph").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -32,7 +32,7 @@
               "translate(" + margin.left + "," + margin.top + ")");
 
     // create a tooltip div
-    var tooltip = d3.select("#secondPage").append("div")
+    var tooltip = d3.select("#linegraph").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
 
@@ -63,7 +63,7 @@
       // add the valueline path.
       var path = svg.append("path")
           .data([trips])
-          .attr('fill', 'white')
+          .attr('fill', 'none')
           .attr('stroke', 'blue')
           .attr("class", "line")
           .attr("d", valueline);

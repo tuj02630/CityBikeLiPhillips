@@ -8,3 +8,132 @@
     font-size: 12px;
     pointer-events: none;
 }
+
+:root {
+    --main1: #9ce3e3;
+    --main1-1: #9ce3e3;
+    --main2: #a2dbc0;
+    --main2-1: #a2dbc0;
+    --main3: #b7cf9e;
+    --main3-1: rgb(220, 220, 220);
+    --main3-2: rgb(220, 220, 220);
+    --main4: #d1be89;
+    --main4-1: #d1be89;
+    --main5: #e6ab87;
+    --main5-1: #e6ab87;
+    --main6: #ee9a9a;
+    --main6-1: #ee9a9a;
+    --main7: rgba(128, 128, 128, 0.49);
+    --main8: rgba(200, 200, 200, 1);
+    /*--main-background: rgba(50, 50, 50, 1);
+    --main-background1: rgba(80, 80, 80, 1);*/
+    --main-white: white;
+    --bs-body-color:var(--main8);
+}
+
+
+
+.d-flex{
+    font-size:20px;
+    background-color: rgba(220, 220, 220, 0.14);
+    padding:20px 10px 20px 20px;
+    border-radius: 20px;
+}
+
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    font: 12px sans-serif;
+    background-color:var(--main-background);
+    color: var(--main8);
+    color: var(--main8)
+}
+
+.tooltip h3, h4, h5 {
+    text-align: left;
+    fill: var(--main8);
+    color: var(--main8);
+}
+
+.connection {
+    stroke: black;
+    stroke-dasharray: 5;
+    stroke-width: 3px;
+    opacity: 0.7;
+}
+
+.zip {
+    vertical-align: middle;
+}
+
+.breedNames{
+    text-anchor: middle;
+    font-size: small;
+}
+#outer {
+    border: 1px solid var(--white2);
+    padding: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    background-color: var(--main-background);
+    font-size:18px;
+}
+
+h3 {
+    font-size: large;
+    color: var(--main8);
+}
+
+body {
+    background-color: var(--main-white);
+    font-family: 'Cabin';
+}
+
+h1 {
+    text-align: center;
+    padding-top: 20px;
+    color: var(--main8);
+    font-family: 'Cabin'
+   /* text-shadow: -1px 0 var(--main3-2), 0 1px var(--main3-2), 1px 0 var(--main3-2), 0 -1px var(--main3-2);*/
+}
+
+select {
+    background-color: var(--main-background1);
+    color: var(--main8);
+    border: 1px var(--main8);
+    border-radius: 3px;
+}
+
+.expText{
+    vertical-align: middle;
+    font-size: 35px;
+    font-weight: bold;
+    
+}
+
+.author{
+    text-align: center;
+    text-anchor: middle;
+    fill: var(--main8);
+}
+.author-icon{
+    alignment: center;
+    stroke: var(--main8);
+}
+a{
+    color: var(--main8);
+}
+a:hover{
+    color: var(--main5);
+}
+
+
+#secondPage {
+    background-image: url('/images/citibikes_1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+

@@ -52,19 +52,19 @@
     width:150px;
     height:150px;
     position: absolute;
-    border: 10px solid #333;
-    border-radius:50%;
+    border: 0.2px solid #333;
+    border-radius:55%;
     z-index:1;
-    top:30px;
+    top:35px;
     animation: spin 1s linear infinite;
   }
   
   .leftTyre {
-    left:-140px;
+    left:-135px;
   }
   
   .rightTyre {
-    left:155px;
+    left:160px;
   }
   
   .leftTyre:before, .rightTyre:before {
@@ -97,7 +97,7 @@
   .spokes:before, .spokes:after {
     content:"";
     position: absolute;
-     width:145px;
+    width:145px;
     height: 2px;
     background-color: #fcfffc;  
     left:3px;
@@ -135,7 +135,7 @@
     border-right: 8px solid transparent;
     transform: rotate(80deg);
     top:-140px;
-    left:240.2px;
+    left:244px;
   }
   
   .shadow {
@@ -184,7 +184,7 @@
   
   .chain {
     position: absolute;
-    top:81px;
+    top:76px;
   }
   
   .chain:before, .chain:after {
