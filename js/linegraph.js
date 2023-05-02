@@ -40,67 +40,67 @@
     Promise.all([
         d3.csv("./output/test/trips_per_day_2013_12.csv"), 
         d3.csv("./output/test/rebalance_per_day_2013_12.csv") 
-      ]).then((data) => {
-      const trips = data[0];
-      const rebalance = data[1];
+    ]).then((data) => {
+        const trips = data[0];
+        const rebalance = data[1];
 
-      // format the data
-      trips.forEach(function(d) {
-        d.date = parseTime(d.date);
-        d.trips = +d.trips;
-      });
+        // format the data
+        trips.forEach(function(d) {
+            d.date = parseTime(d.date);
+            d.trips = +d.trips;
+        });
 
-      rebalance.forEach(function(d) {
-        d.date = parseTime(d.date);
-        d.bikes = +d.bikes;
-      });
+        rebalance.forEach(function(d) {
+            d.date = parseTime(d.date);
+            d.bikes = +d.bikes;
+        });
 
-      // scale the range of the data
-      x.domain(d3.extent(trips, function(d) { return d.date; }));
-      y.domain([0, d3.max(trips, function(d) { return d.trips; })]);
+        // scale the range of the data
+        x.domain(d3.extent(trips, function(d) { return d.date; }));
+        y.domain([0, d3.max(trips, function(d) { return d.trips; })]);
 
 
-      // add the valueline path.
-      var path = svg.append("path")
-          .data([trips])
-          .attr('fill', 'none')
-          .attr('stroke', 'blue')
-          .attr("class", "line")
-          .attr("d", valueline);
+        // add the valueline path.
+        var path = svg.append("path")
+            .data([trips])
+            .attr('fill', 'none')
+            .attr('stroke', 'blue')
+            .attr("class", "line")
+            .attr("d", valueline);
 
-      var path_2 = svg.append("path")
-          .data([rebalance])
-          .attr("class", "rebalance-line")
-          .attr("fill", "none")
-          .attr("stroke", "red")
-          .attr("d", valueline_2)
-          .style("opacity", 1);
+        var path_2 = svg.append("path")
+            .data([rebalance])
+            .attr("class", "rebalance-line")
+            .attr("fill", "none")
+            .attr("stroke", "red")
+            .attr("d", valueline_2)
+            .style("opacity", 1);
 
-      // add circles and mouseover functionality for trips line
-      svg.selectAll(".trips-dot")
-          .data(trips)
-          .enter().append("circle")
-          .attr("class", "trips-dot")
-          .attr("cx", function(d) { return x(d.date); })
-          .attr("cy", function(d) { return y(d.trips); })
-          .attr("r", 3)
-          .on("mouseover", function(event, d) {
-              tooltip.transition()
-                  .duration(200)
-                  .style("opacity", .9);
-              tooltip.html("Date: " + d.date.toLocaleDateString() + "<br/>Trips: " + d.trips)
-                  .style("left", (event.pageX + 10) + "px")
-                  .style("top", (event.pageY - 10) + "px");
-          })
-          .on("mousemove", function(event) {
-              tooltip.style("left", (event.pageX + 10) + "px")
-                  .style("top", (event.pageY - 10) + "px");
-          })
-          .on("mouseout", function() {
-              tooltip.transition()
-                  .duration(500)
-                  .style("opacity", 0);
-          });
+        // add circles and mouseover functionality for trips line
+        svg.selectAll(".trips-dot")
+            .data(trips)
+            .enter().append("circle")
+            .attr("class", "trips-dot")
+            .attr("cx", function(d) { return x(d.date); })
+            .attr("cy", function(d) { return y(d.trips); })
+            .attr("r", 3)
+            .on("mouseover", function(event, d) {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html("Date: " + d.date.toLocaleDateString() + "<br/>Trips: " + d.trips)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 10) + "px");
+            })
+            .on("mousemove", function(event) {
+                tooltip.style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY - 10) + "px");
+            })
+            .on("mouseout", function() {
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
 
         // add circles and mouseover functionality for rebalance line
         svg.selectAll(".rebalance-dot")
@@ -147,45 +147,85 @@
             .attr("text-anchor", "middle")
             .style("font-size", "16px")
             .text("Citi Bike");
+ 
+        // Hide the lines and dots initially
+        svg.selectAll(".line, .rebalance-line, .trips-dot, .rebalance-dot")
+            .style("opacity", 0);
+
   
-      
-      // animate the line
-          var totalLength = path.node().getTotalLength();
 
-          path.attr("stroke-dasharray", totalLength + " " + totalLength)
-              .attr("stroke-dashoffset", totalLength)
-              .transition()
-              .duration(2500)
-              .ease(d3.easeLinear)
-              .attr("stroke-dashoffset", 0);
+        // define function to animate line
+        function animateLine(line) {
+            var totalLength = line.node().getTotalLength();
+            line.attr("stroke-dasharray", totalLength + " " + totalLength)
+                .attr("stroke-dashoffset", totalLength)
+                .transition()
+                .duration(2500)
+                .ease(d3.easeLinear)
+                .attr("stroke-dashoffset", 0);
 
-          // Animate the red line
-          var totalLength_2 = path_2.node().getTotalLength();
+            if(line == path){
+                svg.selectAll(".line, .trips-dot")
+                .style("opacity", 1);
+            
+              // hide dots before animation
+              svg.selectAll(".trips-dot")
+                  .style("opacity", 0);
+              
+              // show dots after animation
+              line.transition()
+                  .duration(2500)
+                  .ease(d3.easeLinear)
+                  .attr("stroke-dashoffset", 0)
+                  .on("end", function() {
+                    svg.selectAll(".trips-dot")
+                        .transition()
+                        .duration(500)
+                        .style("opacity", 1);
+                  });
+            }
+            
+            if(line == path_2){
+                svg.selectAll(".rebalance-line, .rebalance-dot")
+                .style("opacity", 1);
+            
+              // hide dots before animation
+              svg.selectAll(".rebalance-dot")
+                  .style("opacity", 0);
+              
+              // show dots after animation
+              line.transition()
+                  .duration(2500)
+                  .ease(d3.easeLinear)
+                  .attr("stroke-dashoffset", 0)
+                  .on("end", function() {
+                    svg.selectAll(".rebalance-dot")
+                        .transition()
+                        .duration(500)
+                        .style("opacity", 1);
+                  });
+            }
+           
+          }
 
-          path_2.attr("stroke-dasharray", totalLength_2 + " " + totalLength_2)
-              .attr("stroke-dashoffset", totalLength_2)
-              .transition()
-              .duration(2500)
-              .ease(d3.easeLinear)
-              .attr("stroke-dashoffset", 0);
-      
+        
 
-          // Hide the dots before the animation
-          svg.selectAll(".trips-dot, .rebalance-dot")
-              .style("opacity", 0);
+        // create buttons to start animations
+        d3.select("#linegraph")
+            .append("button")
+            .text("Animate Blue Line")
+            .on("click", function() {
+                animateLine(path);
+            });
 
-          // Show the dots after the animation
-          path.transition()
-              .duration(2500)
-              .ease(d3.easeLinear)
-              .attr("stroke-dashoffset", 0)
-              .on("end", function() {
-                  svg.selectAll(".trips-dot, .rebalance-dot")
-                      .transition()
-                      .duration(500)
-                      .style("opacity", 1);
-              });
-      });
+        d3.select("#linegraph")
+            .append("button")
+            .text("Animate Red Line")
+            .on("click", function() {
+                animateLine(path_2);
+            });
+
+    });
 
      
 })();
