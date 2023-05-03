@@ -95,8 +95,8 @@
               <div class="col-5">
                 <div class="row">
                   <text style="font-size: 20px; margin-top: 10px; margin-bottom: 10px;">As many users only ride bikes in one direction, like downhill rather than uphill, there is a net movement of Citi Bikes towards common destination areas.  </text>
-                  <img id="pic1" src="/images/tw1.JPG" alt="Picture 1" style="max-height: 50%; max-width: 85%; margin-bottom: 1vh;" onclick="togglePicture()">
-                  <img id="pic2" src="/images/tw2.JPG" alt="Picture 2" style="max-height: 50%; max-width: 85%; display:none;" onclick="togglePicture()">
+                  <img id="pic1" src="./images/tw1.JPG" alt="Picture 1" style="max-height: 50%; max-width: 85%; margin-bottom: 1vh;" onclick="togglePicture()">
+                  <img id="pic2" src="./images/tw2.JPG" alt="Picture 2" style="max-height: 50%; max-width: 85%; display:none;" onclick="togglePicture()">
                 </div>
               </div>
               <div class="col-7" style="margin-top: 10px;">
@@ -121,7 +121,7 @@
               </text>
               <div class="col-5">
                 <div class="row">
-                  <img src="/images/vans2.jpg" style="max-height: 100%; max-width: 100%;">
+                  <img src="./images/vans2.jpg" style="max-height: 100%; max-width: 100%;">
                   <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> Motorized Vehicles are the most efficient way to redistribute bikes, which can carry 25 at a time. </text>
                   <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> However, using vans may <span style="color: rgb(207, 24, 24);">diminish</span> the benefit of bike sharing system.  </text>
                 </div>
@@ -145,7 +145,7 @@
               </text>
               <div class="col-5">
                 <div class="row">
-                  <img src="/images/bike_angle.jpeg" style="max-height: 100%; max-width: 100%;">
+                  <img src="./images/bike_angle.jpeg" style="max-height: 100%; max-width: 100%;">
                   <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> Bike Angels are Citi Bike riders who improve the availability of bikes and docks for fellow riders and earn rewards along the way.</text>
                   <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> The "Bike Angels" program started in May 2016 and gets popular in 2018.</text>
                 </div>
@@ -161,12 +161,6 @@
         </div>
 
         <div id ="sixthPage" class="section s6">
-          <div class='container' style="margin-left: 60px; margin-right: 20px;">
-            <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 260px"> Total Trips/Rebalanced Bikes by Month </text>
-            <div id="linegraph"></div>
-          </div>
-        </div>
-        <div id ="seventhPage" class="section s7">
           <div class='container' style="margin-left: 20px; margin-right: 20px;">
             <div class="row">
               <text style="font-size: 40px; margin-top: 30px; margin-bottom: 30px;">
@@ -174,22 +168,28 @@
               </text>
               <div class="col-4">
                 <div class="row">
-                  <img src="/images/valet.png" style="max-height: 100%; max-width: 100%;">
+                  <img src="./images/valet.png" style="max-height: 100%; max-width: 100%;">
                   <text style="font-size: 20px; margin-top: 10px; margin-bottom: 10px;"> 
                     Citi Bike offers Valet Service for expanded bike and dock availability at high volume stations during peak usage times. 
-                    
+                  </text>
+                  <text style="font-size: 20px; margin-top: 10px; margin-bottom: 10px;"> 
+                    Upon analysis of the chart, it can be inferred that the period between May to October exhibits the highest frequency of demand. Therefore, it is recommended that the valet schedule be augmented during this time frame.
                  </text>
                 </div>
               </div>
-              <div class="col-6">
+              <div class="col-7">
                 <div class="row">
-                  <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 200px"> Map?</text>
+                  <div class='container' style="margin-left: 60px; margin-right: 20px;">
+                    <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 260px"> Total Trips/Rebalanced Bikes by Month </text>
+                    <div id="linegraph"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div id ="eightPage" class="section s8">
+
+        <div id ="seventhPage" class="section s7">
           <div class='container'>
             <div class="row justify-content-center">
               <div class="col-8 d-flex justify-content-center mb-4" style="background-color:#94d2bd;" >
@@ -234,7 +234,9 @@
           </div>
         </div>
         
-        <div id ="ninthPage" class="section s9"></div>
+        <div id ="eighthPage" class="section s8">
+          resources
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.js" integrity="sha512-GS3CSFQ4aj+0fL2a0wV1ouvpdbTZ3eEUriXTpXt50dc0CkO1fgyWuLoPA5NWy1PAWmcaZNneM+OAThgCqPnX+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -242,7 +244,7 @@
         new fullpage('#fullPage', {
             licenseKey: 'gplv3-license',
             anchors: ['page1', 'page2', 'page3','page4','page5','page6','page7','page8','page9'],
-            sectionsColor: ['#94d2bd', '#F5F5F5', '#F5F5F5','#F5F5F5','#F5F5F5','#F5F5F5','#F5F5F5','#94d2bd'],
+            sectionsColor: ['#94d2bd', '#F5F5F5', '#F5F5F5','#F5F5F5','#F5F5F5','#F5F5F5','#94d2bd','#94d2bd'],
             autoScrolling:true,
             lazyLoading:true,
             navigation:true,

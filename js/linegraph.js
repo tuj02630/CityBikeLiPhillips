@@ -216,6 +216,7 @@
         d3.select("#linegraph")
             .append("button")
             .text("Total Trips per Month")
+            .style("background-color", "#6A9DF0")
             .on("click", function() {
                 animateLine(path);
             });
@@ -223,6 +224,7 @@
         d3.select("#linegraph")
             .append("button")
             .text("Total Rebalanced bikes per Month")
+            .style("background-color", "#FA6F75")
             .on("click", function() {
                 animateLine(path_2);
             });
