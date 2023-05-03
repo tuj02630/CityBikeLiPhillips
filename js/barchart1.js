@@ -1,7 +1,5 @@
 (function() { 
 
-
-
     const data = [
         {year: 2013, trips: 5614888},
         {year: 2014, trips: 8081216},
