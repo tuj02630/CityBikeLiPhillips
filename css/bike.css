@@ -1,5 +1,5 @@
 
-  
+
   .bike-riding {
     position: relative;
     display: flex;
@@ -10,7 +10,8 @@
     overflow: hidden;
     background-color: #94d2bd;
     left: 0;
-    animation: bike-move 10s linear infinite;
+    animation: bike-move 7s linear infinite;
+    
   }
   
   @keyframes bike-move {
