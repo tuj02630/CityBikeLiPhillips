@@ -27,7 +27,7 @@
     var svg = d3.select("#linegraph").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
-      .append("g")
+        .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
 
@@ -35,6 +35,9 @@
     var tooltip = d3.select("#linegraph").append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
+
+
+
 
     // get the data
     Promise.all([
@@ -64,15 +67,17 @@
         var path = svg.append("path")
             .data([trips])
             .attr('fill', 'none')
-            .attr('stroke', 'blue')
+            .attr('stroke', '#1217C2')
             .attr("class", "line")
+            .attr('stroke-width', '2')
             .attr("d", valueline);
 
         var path_2 = svg.append("path")
             .data([rebalance])
             .attr("class", "rebalance-line")
             .attr("fill", "none")
-            .attr("stroke", "red")
+            .attr("stroke", "#AD0F0F")
+            .attr('stroke-width', '2')
             .attr("d", valueline_2)
             .style("opacity", 1);
 
@@ -83,7 +88,8 @@
             .attr("class", "trips-dot")
             .attr("cx", function(d) { return x(d.date); })
             .attr("cy", function(d) { return y(d.trips); })
-            .attr("r", 3)
+            .attr("r", 4)
+            .attr("fill", "#4E98EC")
             .on("mouseover", function(event, d) {
                 tooltip.transition()
                     .duration(200)
@@ -109,8 +115,8 @@
             .attr("class", "rebalance-dot")
             .attr("cx", function(d) { return x(d.date); })
             .attr("cy", function(d) { return y(d.bikes); })
-            .attr("r", 3)
-            .attr("fill", "red")
+            .attr("r", 3.5)
+            .attr("fill", "#EC4545")
             .on("mouseover", function(event, d) {
                 tooltip.transition()
                     .duration(200)
@@ -138,21 +144,17 @@
 
         // add the Y Axis
         svg.append("g")
-            .call(d3.axisLeft(y));
+            .call(d3.axisLeft(y).tickFormat(function(d) { return d / 1000000 + "M"; }));
 
-        // add the title
-        svg.append("text")
-            .attr("x", (width / 2))
-            .attr("y", 2 - (margin.top / 2))
-            .attr("text-anchor", "middle")
-            .style("font-size", "16px")
-            .text("Citi Bike");
+
  
         // Hide the lines and dots initially
         svg.selectAll(".line, .rebalance-line, .trips-dot, .rebalance-dot")
             .style("opacity", 0);
 
-  
+        svg.selectAll("text")
+            .style("font-size", "18px");
+
 
         // define function to animate line
         function animateLine(line) {
@@ -213,14 +215,14 @@
         // create buttons to start animations
         d3.select("#linegraph")
             .append("button")
-            .text("Animate Blue Line")
+            .text("Total Trips per Month")
             .on("click", function() {
                 animateLine(path);
             });
 
         d3.select("#linegraph")
             .append("button")
-            .text("Animate Red Line")
+            .text("Total Rebalanced bikes per Month")
             .on("click", function() {
                 animateLine(path_2);
             });

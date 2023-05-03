@@ -31,8 +31,8 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
     svghpx = svg.style("height")
     svgw = parseInt(svgwpx)
     svgh = parseInt(svghpx)
-    console.log(svgw);
-    console.log(svgh);
+    //console.log(svgw);
+    //console.log(svgh);
     let xpix2coords = d3.scaleLinear()
         .domain([0, svgw])
         .range([limits[WEST], limits[EAST]]);
@@ -112,7 +112,7 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
                     }
                     else
                     {
-                        console.log("New starting station: ", d.start_station_name)
+                        //console.log("New starting station: ", d.start_station_name)
                         smapvals[SCOUNT] =  1;
                         smapvals[ECOUNT] = 0;
                         stations.set(d.start_station_name, smapvals)
@@ -133,7 +133,7 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
                         }
                         else
                         {
-                            console.log("New ending station: ", d.end_station_name)
+                            //console.log("New ending station: ", d.end_station_name)
                             emapvals[ECOUNT] = 1;
                             emapvals[SCOUNT] = 0;
                             stations.set(d.end_station_name, emapvals);
@@ -163,7 +163,7 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
             score_scale_max = Math.abs(min_score);
         }
         score_scale_max /= 4;
-        console.log(min_score, max_score, score_scale_max);
+        //console.log(min_score, max_score, score_scale_max);
         var min_circle_r = 0.5;
         var max_circle_r = 2.5;
         let count2radius = d3.scaleSqrt()

@@ -9,6 +9,7 @@
     pointer-events: none;
 }
 
+
 :root {
     --main1: #9ce3e3;
     --main1-1: #9ce3e3;
@@ -95,13 +96,13 @@ select {
 
 .expText{
     vertical-align: middle;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
     color:black;
     
 }
 .expText-black {
-    font-size: 25px;
+    font-size: 30px;
     color: black;
     font-weight: bold;
   }
@@ -129,3 +130,35 @@ a:hover{
     background-repeat: no-repeat;
   }
 
+
+.bar {
+      fill: rgb(11, 69, 117);
+      fill-opacity: 0.5;
+  }
+
+.bar:hover {
+    fill-opacity: 0.7;
+}
+
+.bar1 {
+    fill: rgb(216, 66, 28);
+    fill-opacity: 0.5;
+}
+
+.bar1:hover {
+  fill-opacity: 0.7;
+}
+
+
+#barchart1_legend_blue {
+    background-color: rgb(11, 69, 117) ;
+    opacity: 0.9;
+    font-size: 25px;
+  }
+
+
+#barchart1_legend_red {
+    background-color: rgb(216, 66, 28) ;
+    font-size: 25px;
+    opacity: 0.9;
+  }

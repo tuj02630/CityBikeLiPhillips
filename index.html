@@ -21,8 +21,7 @@
   <div id="outer">
     <div id="fullPage">
   
-        <div id="firstPage" class="section s1 fp-table" style>
-            <hi>the first page</hi>
+        <div id="firstPage" class="section s1">
             <div class="bike-riding">
                 <div class="clouds"></div>
                 <div class="shadow"></div>
@@ -57,8 +56,6 @@
               </div>
             </div>
         </div>
-
-
 
         <div id="secondPage" class="section s2">
           <div class='container' id="s2Box1">
@@ -106,82 +103,100 @@
           </div>
         </div>
 
-
-
         <div id="fourthPage" class="section s4">
           <div class='container' style="margin-left: 20px; margin-right: 20px;">
             <div class="row">
-              <text style="font-size: 40px; margin-top: 30px;">
+              <text style="font-size: 40px; margin-top: 30px; margin-bottom: 30px;">
                 Rebalancing Bikes
               </text>
-              <div class="col-4">
+              <div class="col-5">
                 <div class="row">
-                  <text style="font-size: 20px; margin-top: 10px; margin-bottom: 10px;"> Rebalancing in four methods </text>
-                  <div class="row" id="pic3_4" onclick="togglePicture()">
-                    <img id="pic3" src="/images/bike_angle.jpeg" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;">
-                    <text style="font-size: 20px; margin-bottom: 20px;"> Bike Angels </text>
-                    <img id="pic4" src="/images/bike_train.jpg" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;" >
-                    <text style="font-size: 20px; margin-bottom: 10px;"> Bike Trains </text>
-                  </div>
-                  <div class="row" id="pic5_6" onclick="togglePicture()" style="display: none;">
-                    <img id="pic5" src="/images/valet.png" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;">
-                    <text style="font-size: 20px; margin-bottom: 20px;"> Valet schedule </text>
-                    <img id="pic6" src="/images/vans.jpg" alt="Picture 1" style="max-height: 50%; max-width: 95%; margin-bottom: 1vh;">
-                    <text style="font-size: 20px; margin-bottom: 10px;"> Motorized Vehicles </text>
+                  <img src="/images/vans2.jpg" style="max-height: 100%; max-width: 100%;">
+                  <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> Motorized Vehicles are the most efficient way to redistribute bikes, which can carry 25 at a time. </text>
+                  <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> However, using vans may <span style="color: rgb(207, 24, 24);">diminish</span> the benefit of bike sharing system.  </text>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 230px"> Rebalanced Bike Numbers by Years </text>
+                  <div id="barchart2">
                   </div>
                 </div>
               </div>
-              <div class="col-7" style="margin-top: 10px;">
-                <text style="font-size: 20px;"> linegraph </text>   
-                <div class="row" style="height: 10%; padding-left: 0vh; padding-bottom: 1vh; padding-right: 3vh; padding-top: 1vh">
-                  <div id="linegraph">
-                </div>    
+            </div>
+          </div>
+        </div>
+
+        <div id ="fifthPage" class="section s5">
+          <div class='container' style="margin-left: 20px; margin-right: 20px;">
+            <div class="row">
+              <text style="font-size: 40px; margin-top: 30px; margin-bottom: 30px;">
+                Better Method to Rebalance
+              </text>
+              <div class="col-5">
+                <div class="row">
+                  <img src="/images/bike_angle.jpeg" style="max-height: 100%; max-width: 100%;">
+                  <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> Bike Angels are Citi Bike riders who improve the availability of bikes and docks for fellow riders and earn rewards along the way.</text>
+                  <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px;"> The "Bike Angels" program started in May 2016 and gets popular in 2018.</text>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 200px"> Total Trips/Rebalanced Bikes by Years </text>
+                  <div id="barchart1"></div>
+                  <div id="barchart1_legend_blue" style="width: 400px; margin-left: 230px"> Total Trip per Year</div>
+                  <p></p>
+                  <div id="barchart1_legend_red" style="width: 400px; margin-left: 230px"> Total Rebalanced Bikes per Year</div>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
+        <div id ="sixthPage" class="section s6">
+          <div class='container' style="margin-left: 60px; margin-right: 20px;">
+            <text style="font-size: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 260px"> Total Trips/Rebalanced Bikes by Month </text>
+            <div id="linegraph"></div>
+          </div>
         </div>
-        
-        </div>
+        <div id ="seventhPage" class="section s7"></div>
+        <div id ="eightPage" class="section s8"></div>
+        <div id ="ninthPage" class="section s9"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.js" integrity="sha512-GS3CSFQ4aj+0fL2a0wV1ouvpdbTZ3eEUriXTpXt50dc0CkO1fgyWuLoPA5NWy1PAWmcaZNneM+OAThgCqPnX+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         new fullpage('#fullPage', {
             licenseKey: 'gplv3-license',
-            anchors: ['page1', 'page2', 'page3','page4'],
-            sectionsColor: ['#94d2bd', '#F5F5F5', '#F5F5F5d','#F5F5F5'],
+            anchors: ['page1', 'page2', 'page3','page4','page5','page6','page7','page8','page9'],
+            sectionsColor: ['#94d2bd', '#F5F5F5', '#F5F5F5','#F5F5F5','#F5F5F5','#F5F5F5','#F5F5F5','#F5F5F5'],
             autoScrolling:true,
             lazyLoading:true,
             navigation:true,
             
         });
     </script>
+
     <script src="js/interaction.js"></script>
     <script src="JS/linegraph.js"></script>
+    <script src="JS/barchart1.js"></script>
+    <script src="JS/barchart2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
     <script>
       var pic1 = document.getElementById("pic1");
       var pic2 = document.getElementById("pic2");
-      var pic3 = document.getElementById("pic3_4");
-      var pic5 = document.getElementById("pic5_6");
-      var currentPicS3 = pic1;
-      var currentPicS4 = pic3;
-    
+
+      var currentPic = pic1;
       function togglePicture() {
-        if (currentPicS3 == pic1 || currentPicS4 == pic3) {
+        if (currentPic == pic1) {
           pic1.style.display = "none";
           pic2.style.display = "inline-block";
-          pic3.style.display = "none";
-          pic5.style.display = "inline-block";
-          currentPicS3 = pic2;
-          currentPicS4 = pic5;
+          currentPic = pic2;
         } else {
           pic2.style.display = "none";
           pic1.style.display = "inline-block";
-          pic5.style.display = "none";
-          pic3.style.display = "inline-block";
-          currentPicS3 = pic1;
-          currentPicS4 = pic3;
+          currentPic = pic1;
         }
       }
     </script>
