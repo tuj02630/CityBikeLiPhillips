@@ -25,7 +25,7 @@
     ];
 
 
-    const percent = [
+    /*const percent = [
         {year: 2013, number: 12.35},
         {year: 2014, number: 12.31},
         {year: 2015, number: 12.39},
@@ -34,13 +34,13 @@
         {year: 2018, number: 2.69},
         {year: 2019, number: 2.52},
         {year: 2020, number: 1.82},
-    ]
+    ]*/
     const width = 800;
     const height = 400;
-    const margin = {top: 20, right: 20, bottom: 30, left: 40};
+    const margin = {top: 20, right: 20, bottom: 30, left: 60};
 
     // Create a tooltip div element
-    const tooltip = d3.select("body")
+    const tooltip = d3.select("#barchart1")
         .append("div")
         .style("position", "absolute")
         .style("background", "white")
@@ -78,12 +78,49 @@
     const darkerColor = d3.scaleOrdinal()
         .domain([...data.map(d => d.year), ...newData.map(d => d.year)])
         .range([...d3.schemePastel1, ...d3.schemeCategory10]);
+    
+    //buttons
 
+
+    // Create a container div for buttons
+    const buttonContainer = d3.select("#barchart1")
+        .append("div")
+        .style("display", "flex")
+        .style("justify-content", "center")
+        .style("margin-top", "20px");
+    // Add a button to toggle the display of newData bars
+
+    buttonContainer
+        .append("button")
+        .attr("id", "toggleButton")
+        .text("Separate")
+        .style("background-color", "rgb(11, 69, 117)")
+        .style("color", "white")
+        .style("border", "none")
+        .style("padding", "10px 20px")
+        .style("margin-right", "10px")
+        .style("cursor", "pointer");
+
+
+    // Add a button to return to the original overlapped bar chart
+    buttonContainer
+        .append("button")
+        .attr("id", "resetButton")
+        .text("Overlap")
+        .style("background-color", "#f44336")
+        .style("color", "white")
+        .style("border", "none")
+        .style("padding", "10px 20px")
+        .style("cursor", "pointer");
+
+
+
+    //barchart
     const svg = d3.select("#barchart1").append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    svg.append("g")
+    const bars = svg.append("g")
         .selectAll("rect")
         .data(data)
         .join("rect")
@@ -106,7 +143,7 @@
         });
 
     
-    svg.append("g")
+    const bars1 = svg.append("g")
         .selectAll("rect")
         .data(newData)
         .join("rect")
@@ -127,13 +164,54 @@
         .on("mouseout", () => {
             tooltip.style("visibility", "hidden");
             });
+            let newDataDisplayed = false;
 
+    d3.select("#toggleButton").on("click", function() {
+        newDataDisplayed = !newDataDisplayed;
+
+        // Update the button text based on the displayed bars
+        d3.select(this).text(newDataDisplayed ? "Rebalanced Bikes" : "Total Trips");
+        
+        bars.transition()
+            .duration(500)
+            .style("opacity", newDataDisplayed ? 0 : 1)
+            .attr("pointer-events", newDataDisplayed ? "none" : "all");
+
+        y.domain([0, d3.max(newDataDisplayed ? newData : data, d => newDataDisplayed ? d.bikes : d.trips)]).nice();
+
+        yAxisGroup.transition().duration(500).call(yAxis);
+
+        bars1.transition()
+            .duration(500)
+            .attr("y", d => y(newDataDisplayed ? d.bikes : 0))
+            .attr("height", d => y(0) - y(newDataDisplayed ? d.bikes : 0));
+        });
+    
+    d3.select("#resetButton").on("click", function() {
+            newDataDisplayed = false;
+            
+            bars.transition()
+                .duration(500)
+                .style("opacity", 1)
+                .attr("pointer-events", "all");
+    
+            y.domain([0, d3.max(data, d => d.trips)]).nice();
+    
+            yAxisGroup.transition().duration(500).call(yAxis);
+    
+            bars1.transition()
+                .duration(500)
+                .attr("y", d => y(d.bikes))
+                .attr("height", d => y(0) - y(d.bikes));
+        });
+        
     svg.append("g")
         .call(xAxis);
 
-    svg.append("g")
+    const yAxisGroup = svg.append("g")
         .call(yAxis);
 
+   
 
 
 })();
