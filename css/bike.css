@@ -9,7 +9,17 @@
     height: 600px;
     overflow: hidden;
     background-color: #94d2bd;
-
+    left: 0;
+    animation: bike-move 10s linear infinite;
+  }
+  
+  @keyframes bike-move {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: calc(100% - 50px);
+    }
   }
   
   .cyclist {
