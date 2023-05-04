@@ -21,10 +21,10 @@ function clamp(num, min, max){
 }
 d3.xml('res/nycmap.svg').then((nycmap) => {
     var map = d3.select("#map")
-    var xm = d3.select("#xm").node()
-    var ym = d3.select("#ym").node()
-    var stationname = d3.select("#stationname").node()
-    var stationdetails= d3.select("#stationdetails").node()
+    //var xm = d3.select("#xm").node()
+    //var ym = d3.select("#ym").node()
+    //var stationname = d3.select("#stationname").node()
+    //var stationdetails= d3.select("#stationdetails").node()
     map.node().append(nycmap.documentElement)
     var svg = map.select("svg")
     svgwpx = svg.style("width")
@@ -49,18 +49,31 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
         .domain([limits[NORTH], limits[SOUTH]])
         .range([0, svgh]);
 
-    svg.on("mousemove", (event) => {    
+    var infobox = d3.select("body")
+        .append("div")
+        .attr("id", "infobox")
+        .style("position", "absolute")
+        .style("pointer-events", "none")
+        .style("background", "white")
+        .style("border", "1px solid black")
+        .style("padding", "5px")
+        .style("opacity", 0);
+
+
+
+
+    /*svg.on("mousemove", (event) => {    
         var coords = d3.pointer( event );
         xm.innerHTML = xpix2coords(clamp(coords[0], 0, svgw)).toString();
         ym.innerHTML = ypix2coords(clamp(coords[1], 0, svgh)).toString();
         //console.log(xpix2coords(clamp(coords[0], 0, svgw)), ypix2coords(clamp(coords[1], 0, svgh))); // log the mouse x,y position
     })
-    console.time("totalTime:");
+    console.time("totalTime:");*/
     Promise.all(
         [
             //NYC
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.000.csv'),
-            /*d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.001.csv'),
+            d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.001.csv'),
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.002.csv'),
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.003.csv'),
             d3.csv('res/202303-citibike-tripdata/202303-citibike-tripdata.004.csv'),
@@ -207,23 +220,31 @@ d3.xml('res/nycmap.svg').then((nycmap) => {
             .attr('fill-opacity', 0.75)
             .attr('stroke', "#f0eded")
             .attr('stroke-width', '0.25')
-            .on("mouseover", function(d, i){
+            .on("mouseover", function(event, i){
                 //console.log(i[KEY]);
-                stationname.innerHTML = i[KEY];
-                stationdetails.innerHTML = "Number of trips to: " + i[VALUE][ECOUNT];
-                stationdetails.innerHTML += "</br>Number of trips from: " + i[VALUE][SCOUNT];
-                stationdetails.innerHTML += "</br>Score value: " + ((i[VALUE][ECOUNT] - i[VALUE][SCOUNT]));
+                infobox.style("opacity", 1)
+                    .html("Station: " + i[KEY]
+                        + "<br>Number of trips to: " + i[VALUE][ECOUNT]
+                        + "<br>Number of trips from: " + i[VALUE][SCOUNT]
+                        + "<br>Score value: " + ((i[VALUE][ECOUNT] - i[VALUE][SCOUNT])));
                 d3.select(this)
                     .style("stroke", "black")
                     .attr('fill-opacity', 1)
-                    .attr('stroke-width', '0.5')
+                    .attr('stroke-width', '0.5');
+                svg.on("mousemove", (event) => {
+                    infobox.style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY - 10) + "px");
+                });
             })
             .on("mouseout", function(){
+                infobox.style("opacity", 0);
                 d3.select(this)
                     .style("stroke", "#f0eded")
                     .attr('stroke-width', '0.25')
-                    .attr('fill-opacity', 0.75)
-            })
+                    .attr('fill-opacity', 0.75);
+                svg.on("mousemove", null);
+            });
+            
             
     })
     
